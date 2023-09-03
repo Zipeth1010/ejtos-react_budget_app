@@ -40,6 +40,7 @@ export const AppReducer = (state, action) => {
         return currentExp;
       });
       action.type = "DONE";
+
       return {
         ...state,
         expenses: [...red_expenses],
@@ -60,8 +61,12 @@ export const AppReducer = (state, action) => {
       };
     case "SET_BUDGET":
       action.type = "DONE";
-      state.budget = action.payload;
 
+      if (state.budget >= 20000) {
+        alert("Cannot increase the budget past 20,000");
+      } else {
+        state.budget = action.payload;
+      }
       return {
         ...state,
       };
